@@ -1,5 +1,5 @@
 
-const endPoint = 'http://localhost:2222/open-port/';
+const endPoint = 'http://localhost:2224/open-port/';
 async function getOpenOpenDetail(hostname){
     let finalUrl = endPoint+hostname;
     let response = await fetch(finalUrl);
@@ -18,8 +18,12 @@ function createTile(data){
 
     console.log("Hostname:"+ hostName);
     console.log("Latest Ports:");
-    const parent1 = document.getElementById("open_port");
+    let parent1 = document.getElementById("open_port");
+    while (parent1.firstChild) {
+        parent1.removeChild(parent1.firstChild);
+    }
     latest.forEach(e => {
+
         const tile = document.createElement("div");
         tile.className = "tiles"
         tile.innerHTML=`port:`+e.portNumber+`<br>protocol:`+e.portProtocol
@@ -27,6 +31,9 @@ function createTile(data){
         });
     console.log("History Ports:");
     const parent2 = document.getElementById("history_port");
+    while (parent2.firstChild) {
+        parent2.removeChild(parent2.firstChild);
+    }
     history.forEach(e => {
         e.forEach(element => {
             const tile = document.createElement("div");
@@ -38,6 +45,9 @@ function createTile(data){
     });
     console.log("NewOnes Ports:");
     const parent3 = document.getElementById("new_port");
+    while (parent3.firstChild) {
+        parent3.removeChild(parent3.firstChild);
+    }
     newOnes.forEach(e => {
         const tile = document.createElement("div");
             tile.className = "tiles"
@@ -46,6 +56,9 @@ function createTile(data){
     });
     console.log("Deleted Ports:");
     const parent4 = document.getElementById("deleted_port");
+    while (parent4.firstChild) {
+        parent4.removeChild(parent4.firstChild);
+    }
     deleted.forEach(e => {
         const tile = document.createElement("div");
             tile.className = "tiles"
@@ -58,10 +71,10 @@ function createTile(data){
 
 } 
 
-document.addEventListener('click',()=>{
-        let hostname = document.getElementById("hostname");
+function clickSubmit(){
+    let hostname = document.getElementById("hostname");
         let text = hostname.value;
         if(text){
             getOpenOpenDetail(text);
           }
-})
+}
