@@ -73,8 +73,14 @@ function createTile(data){
 
 function clickSubmit(){
     let hostname = document.getElementById("hostname");
-        let text = hostname.value;
-        if(text){
-            getOpenOpenDetail(text);
-          }
+    let text = hostname.value;
+    const IPCHECK_REGEX = /^(?:(?:(?:[a-zA-z\-]+)\:\/{1,3})?(?:[a-zA-Z0-9])(?:[a-zA-Z0-9\-\.]){1,61}(?:\.[a-zA-Z]{2,})+|\[(?:(?:(?:[a-fA-F0-9]){1,4})(?::(?:[a-fA-F0-9]){1,4}){7}|::1|::)\]|(?:(?:[0-9]{1,3})(?:\.[0-9]{1,3}){3}))(?:\:[0-9]{1,5})?$/;
+    if (!IPCHECK_REGEX.test(text)) {
+        alert("Enter Valid Domain Name");
+        hostname.focus();
+        return false;
+    }
+    if(text){
+        getOpenOpenDetail(text);
+    }
 }
