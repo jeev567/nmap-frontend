@@ -1,5 +1,5 @@
 
-const endPoint = 'http://localhost:2224/open-port/';
+const endPoint = 'http://localhost:1212/open-port/';
 async function getOpenOpenDetail(hostname){
     let finalUrl = endPoint+hostname;
     let response = await fetch(finalUrl);
@@ -71,7 +71,7 @@ function createTile(data){
 
 } 
 
-function clickSubmit(){
+async function clickSubmit(){
     let hostname = document.getElementById("hostname");
     let text = hostname.value;
     const IPCHECK_REGEX = /^(?:(?:(?:[a-zA-z\-]+)\:\/{1,3})?(?:[a-zA-Z0-9])(?:[a-zA-Z0-9\-\.]){1,61}(?:\.[a-zA-Z]{2,})+|\[(?:(?:(?:[a-fA-F0-9]){1,4})(?::(?:[a-fA-F0-9]){1,4}){7}|::1|::)\]|(?:(?:[0-9]{1,3})(?:\.[0-9]{1,3}){3}))(?:\:[0-9]{1,5})?$/;
@@ -81,6 +81,17 @@ function clickSubmit(){
         return false;
     }
     if(text){
-        getOpenOpenDetail(text);
+        addOrRemoveloaderAndBlockPointerEvent();
+        await getOpenOpenDetail(text);
+        addOrRemoveloaderAndBlockPointerEvent();
     }
+}  
+
+function addOrRemoveloaderAndBlockPointerEvent() {
+    let body_block = document.getElementById('body');
+    let loader = document.getElementById('loader_container');
+    body_block.classList.toggle("block-action");
+        loader.classList.toggle("loader");
+    
+    
 }

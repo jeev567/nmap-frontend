@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
-<body>
+<body id="body">
+    
     <div class="container">
         <div class="input_section" id="user-i">
             <input type="text" id="hostname" class="host">
             <button id="findInfo" onclick="clickSubmit()"><i class="fas fa-angle-right"></i></button>
         </div>
     </div>
-
+    <div  id="loader_container"></div>
     <div class="result">
         <h4>Open Ports</h4>
         <div class="open_ports spacer" id="open_port"> 
