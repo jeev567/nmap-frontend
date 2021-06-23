@@ -85,3 +85,12 @@ async function clickSubmit(){
         addOrRemoveloaderAndBlockPointerEvent();
     }
 }  
+
+function addOrRemoveloaderAndBlockPointerEvent() {
+    let body_block = document.getElementById('body');
+    let loader = document.getElementById('loader_container');
+    body_block.classList.toggle("block-action");
+        loader.classList.toggle("loader");
+    
+    
+}
