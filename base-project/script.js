@@ -1,5 +1,5 @@
 
-const endPoint = 'http://localhost:2224/open-port/';
+const endPoint = 'http://localhost:5642/open-port/';
 async function getOpenDetail(hostname){
     let finalUrl = endPoint+hostname;
     let nMapResponse = await fetch(finalUrl);
@@ -32,12 +32,15 @@ function createTile(data){
         parent2.removeChild(parent2.firstChild);
     }
     history.forEach(e => {
+        const tile_set = document.createElement("div");
+        tile_set.className = "tiles_set"
         e.forEach(element => {
             const tile = document.createElement("div");
             tile.className = "tiles"
             tile.innerHTML=`port:`+element.portNumber+`<br>protocol:`+element.portProtocol
-            parent2.appendChild(tile);
+            tile_set.appendChild(tile);
         });
+        parent2.appendChild(tile_set);
     });
 
     const parent3 = document.getElementById("new_port");
@@ -90,7 +93,5 @@ function addOrRemoveloaderAndBlockPointerEvent() {
     let body_block = document.getElementById('body');
     let loader = document.getElementById('loader_container');
     body_block.classList.toggle("block-action");
-        loader.classList.toggle("loader");
-    
-    
+    loader.classList.toggle("loader");
 }
